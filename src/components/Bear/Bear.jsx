@@ -67,7 +67,7 @@ const Bear = ({ bear }) => {
         </div>
 
         {/* methods */}
-        <div className="flex items-center gap-3 mt-4 flex-wrap">
+        <div className="flex items-center gap-3 mt-2 flex-wrap">
           <p className="text-sm">
             <span className="font-bold">Volume:</span> {bear.volume.value}{" "}
             {bear.volume.unit}
@@ -187,36 +187,34 @@ const Bear = ({ bear }) => {
                   ))}
                 </MenuList>
               </Menu>
-
               {/* menu for hops */}
               <Menu
-                  placement="right-start"
-                  open={openTwist}
-                  handler={setOpenTwist}
-                  allowHover
-                  offset={15}
-                >
-                  <MenuHandler className="flex items-center justify-between">
-                    <MenuItem>
-                      Hops
-                      <MdArrowDropDown
-                        className={`h-3.5 w-3.5 text-xl transition-transform ${
-                          openTwist ? "-rotate-90" : ""
-                        }`}
-                      />
+                placement="right-start"
+                open={openTwist}
+                handler={setOpenTwist}
+                allowHover
+                offset={15}
+              >
+                <MenuHandler className="flex items-center justify-between">
+                  <MenuItem>
+                    Hops
+                    <MdArrowDropDown
+                      className={`h-3.5 w-3.5 text-xl transition-transform ${
+                        openTwist ? "-rotate-90" : ""
+                      }`}
+                    />
+                  </MenuItem>
+                </MenuHandler>
+                <MenuList>
+                  {bear.ingredients.hops.map((data, idx) => (
+                    <MenuItem key={idx}>
+                      {data.name}, {data.amount.value} {data.amount.unit},{" "}
+                      {data.add}
+                      {`(${data.attribute})`}
                     </MenuItem>
-                  </MenuHandler>
-                  <MenuList>
-                    {
-                        bear.ingredients.hops.map((data, idx) => <MenuItem key={idx}>
-                            {data.name}, {data.amount.value} {data.amount.unit}, {data.add}{`(${data.attribute})`}
-                        </MenuItem>)
-                    }
-                  </MenuList>
-                </Menu>
-
-
-
+                  ))}
+                </MenuList>
+              </Menu>
               <MenuItem>
                 <span className="font-bold">Yeast:</span>{" "}
                 {bear.ingredients.yeast}
@@ -224,6 +222,18 @@ const Bear = ({ bear }) => {
             </MenuList>
           </Menu>
         </div>
+
+        {/* food_pairing */}
+        <div className="mt-5">
+            <h1 className="text-xl font-medium">Food Pairing: </h1>
+            <ol className="ml-2 text-sm">
+                {
+                    bear.food_pairing.map((data, idx) => <li key={idx}>{idx+1}. {data}</li>)
+                }
+            </ol>
+        </div>
+
+
       </CardBody>
     </Card>
   );
