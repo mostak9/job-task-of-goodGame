@@ -15,6 +15,7 @@ import { MdArrowDropDown } from "react-icons/md";
 
 const Bear = ({ bear }) => {
   const [openMenu, setOpenMenu] = useState(false);
+  const [openTwist, setOpenTwist] = useState(false);
   return (
     <Card className="w-full h-fit md:max-w-[48rem] flex-row mx-auto shadow-lg">
       {/* card image */}
@@ -66,7 +67,7 @@ const Bear = ({ bear }) => {
         </div>
 
         {/* methods */}
-        <div className="flex items-center gap-3 mt-4">
+        <div className="flex items-center gap-3 mt-4 flex-wrap">
           <p className="text-sm">
             <span className="font-bold">Volume:</span> {bear.volume.value}{" "}
             {bear.volume.unit}
@@ -75,16 +76,19 @@ const Bear = ({ bear }) => {
             <span className="font-bold">Boil volume:</span>{" "}
             {bear.boil_volume.value} {bear.boil_volume.unit}
           </p>
+          {/* menu for methods */}
           <Menu>
             <MenuHandler>
               <Button
                 variant="text"
+                size="sm"
                 className="flex items-center gap-1 text-gray-700"
               >
                 Method <MdArrowDropDown className="text-xl" />
               </Button>
             </MenuHandler>
             <MenuList>
+              {/* Mash Temperature */}
               <Menu
                 placement="right-start"
                 open={openMenu}
@@ -114,9 +118,79 @@ const Bear = ({ bear }) => {
 
               <MenuItem>
                 <span className="font-bold">Fermentation:</span>{" "}
-                {bear.method.fermentation.temp.value} {bear.method.fermentation.temp.unit}
+                {bear.method.fermentation.temp.value}{" "}
+                {bear.method.fermentation.temp.unit}
               </MenuItem>
-              <MenuItem>Twist</MenuItem>
+
+              {/* twist menu */}
+              {bear.method.twist && (
+                <Menu
+                  placement="right-start"
+                  open={openTwist}
+                  handler={setOpenTwist}
+                  allowHover
+                  offset={15}
+                >
+                  <MenuHandler className="flex items-center justify-between">
+                    <MenuItem>
+                      Twist
+                      <MdArrowDropDown
+                        className={`h-3.5 w-3.5 text-xl transition-transform ${
+                          openTwist ? "-rotate-90" : ""
+                        }`}
+                      />
+                    </MenuItem>
+                  </MenuHandler>
+                  <MenuList>
+                    <MenuItem>{bear.method.twist}</MenuItem>
+                  </MenuList>
+                </Menu>
+              )}
+            </MenuList>
+          </Menu>
+
+          {/* menu for ingredients */}
+          <Menu>
+            <MenuHandler>
+              <Button
+                variant="text"
+                size="sm"
+                className="flex items-center gap-1 text-gray-700"
+              >
+                Ingredients <MdArrowDropDown className="text-xl" />
+              </Button>
+            </MenuHandler>
+            <MenuList>
+              {/* Menu for malt */}
+              <Menu
+                placement="right-start"
+                open={openMenu}
+                handler={setOpenMenu}
+                allowHover
+                offset={15}
+              >
+                <MenuHandler className="flex items-center justify-between">
+                  <MenuItem>
+                    Malt
+                    <MdArrowDropDown
+                      className={`h-3.5 w-3.5 text-xl transition-transform ${
+                        openMenu ? "-rotate-90" : ""
+                      }`}
+                    />
+                  </MenuItem>
+                </MenuHandler>
+                <MenuList>
+                  {bear.ingredients.malt.map((data, idx) => (
+                    <MenuItem key={idx}>
+                      {data.name}, {data.amount.value} {data.amount.unit}
+                    </MenuItem>
+                  ))}
+                </MenuList>
+              </Menu>
+              <MenuItem>
+                <span className="font-bold">Yeast:</span>{" "}
+                {bear.ingredients.yeast}
+              </MenuItem>
             </MenuList>
           </Menu>
         </div>
