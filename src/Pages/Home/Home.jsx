@@ -6,14 +6,19 @@ import { Button, Input } from "@material-tailwind/react";
 import { FaSearch } from "react-icons/fa";
 
 const Home = () => {
-  const [data, setData] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [search, setSearch] = useState("");
   const onChange = ({ target }) => setSearch(target.value);
   useEffect(() => {
     fetch("https://api.punkapi.com/v2/beers")
       .then((res) => res.json())
-      .then((data) => setData(data));
+      .then((data) => setAllData(data));
   }, []);
+
+  const data =search ? allData.filter(data => {
+    const testText = data.name.toLowerCase()
+    return testText.includes(search.toLowerCase());
+  }): allData;
 
   return (
     <div className=" container mx-auto">
