@@ -6,6 +6,7 @@ import {
   CardHeader,
   Typography,
 } from "@material-tailwind/react";
+import { Link } from "react-router-dom";
 
 const BearCard = ({ card }) => {
   return (
@@ -34,6 +35,7 @@ const BearCard = ({ card }) => {
           </Typography>
         </CardBody>
         <CardFooter className="pt-0">
+          <Link to={`/details/${card.id}`}>
           <Button
             ripple={false}
             fullWidth={true}
@@ -41,6 +43,7 @@ const BearCard = ({ card }) => {
           >
             See Details
           </Button>
+          </Link>
         </CardFooter>
       </Card>
     </div>

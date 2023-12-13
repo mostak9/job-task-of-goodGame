@@ -9,15 +9,23 @@ import {
   MenuList,
   Typography,
 } from "@material-tailwind/react";
-import PropTypes from "prop-types";
 import { useState } from "react";
 import { MdArrowDropDown } from "react-icons/md";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { FaArrowLeftLong } from "react-icons/fa6";
 
-const Bear = ({ bear }) => {
+const Bear = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openTwist, setOpenTwist] = useState(false);
+  const [bear] = useLoaderData();
+  const navigate = useNavigate();
+   
   return (
-    <Card className="w-full h-fit md:max-w-[48rem] flex-row mx-auto shadow-lg border-2">
+   <div className="container mx-auto ">
+    
+    <div className="flex flex-col gap-5 items-center justify-center min-h-screen">
+    <Button variant="text" onClick={() => navigate(-1)} className="flex items-center gap-1"><FaArrowLeftLong className="text-xl"/>Back</Button>
+     <Card className="w-full h-fit md:max-w-[48rem] flex-row mx-auto shadow-lg border-2">
       {/* card image */}
       <CardHeader
         shadow={false}
@@ -69,7 +77,7 @@ const Bear = ({ bear }) => {
         {/* methods */}
         <div className="flex items-center gap-2 mt-2 flex-wrap">
           <p className="text-sm">
-            <span className="font-bold">Volume:</span> {bear.volume.value}{" "}
+            <span className="font-bold">Volume:</span> {bear?.volume?.value}{" "}
             {bear.volume.unit}
           </p>
           <p className="text-sm">
@@ -245,11 +253,11 @@ const Bear = ({ bear }) => {
         
       </CardBody>
     </Card>
+    </div>
+   </div>
   );
 };
 
-Bear.propTypes = {
-  bear: PropTypes.object.isRequired,
-};
+
 
 export default Bear;
