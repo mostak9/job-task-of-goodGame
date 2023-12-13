@@ -39,7 +39,7 @@ const Bear = ({ bear }) => {
           {bear.tagline}
         </Typography>
 
-        <Typography color="gray" className="mb-8 font-normal">
+        <Typography color="gray" className="mb-8 text-sm font-normal">
           {bear.description}
         </Typography>
 
@@ -224,7 +224,7 @@ const Bear = ({ bear }) => {
         </div>
 
         {/* food_pairing */}
-        <div className="mt-5">
+        <div className="mt-4">
             <h1 className="text-xl font-medium">Food Pairing: </h1>
             <ol className="ml-2 text-sm">
                 {
@@ -233,7 +233,16 @@ const Bear = ({ bear }) => {
             </ol>
         </div>
 
+        {/* brewers tips */}
+        <div className="mt-4">
+            <h1 className="text-xl font-medium">Brewers Tips</h1>
+            <p className="mt-1 text-sm">{bear.brewers_tips}</p>
+        </div>
 
+        <p className="mt-4">
+            <span className="font-bold">Contributed By:</span> {bear.contributed_by}
+          </p>
+        
       </CardBody>
     </Card>
   );
