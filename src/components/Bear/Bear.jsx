@@ -187,6 +187,36 @@ const Bear = ({ bear }) => {
                   ))}
                 </MenuList>
               </Menu>
+
+              {/* menu for hops */}
+              <Menu
+                  placement="right-start"
+                  open={openTwist}
+                  handler={setOpenTwist}
+                  allowHover
+                  offset={15}
+                >
+                  <MenuHandler className="flex items-center justify-between">
+                    <MenuItem>
+                      Hops
+                      <MdArrowDropDown
+                        className={`h-3.5 w-3.5 text-xl transition-transform ${
+                          openTwist ? "-rotate-90" : ""
+                        }`}
+                      />
+                    </MenuItem>
+                  </MenuHandler>
+                  <MenuList>
+                    {
+                        bear.ingredients.hops.map((data, idx) => <MenuItem key={idx}>
+                            {data.name}, {data.amount.value} {data.amount.unit}, {data.add}{`(${data.attribute})`}
+                        </MenuItem>)
+                    }
+                  </MenuList>
+                </Menu>
+
+
+
               <MenuItem>
                 <span className="font-bold">Yeast:</span>{" "}
                 {bear.ingredients.yeast}
