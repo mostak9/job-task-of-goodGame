@@ -17,7 +17,7 @@ const Bear = ({ bear }) => {
   const [openMenu, setOpenMenu] = useState(false);
   const [openTwist, setOpenTwist] = useState(false);
   return (
-    <Card className="w-full h-fit md:max-w-[48rem] flex-row mx-auto shadow-lg">
+    <Card className="w-full h-fit md:max-w-[48rem] flex-row mx-auto shadow-lg border-2">
       {/* card image */}
       <CardHeader
         shadow={false}
@@ -27,7 +27,7 @@ const Bear = ({ bear }) => {
         <img
           src={bear.image_url}
           alt="bear-image"
-          className="w-1/3  object-cover"
+          className="w-2/3  object-cover"
         />
       </CardHeader>
       <CardBody>
@@ -67,7 +67,7 @@ const Bear = ({ bear }) => {
         </div>
 
         {/* methods */}
-        <div className="flex items-center gap-3 mt-2 flex-wrap">
+        <div className="flex items-center gap-2 mt-2 flex-wrap">
           <p className="text-sm">
             <span className="font-bold">Volume:</span> {bear.volume.value}{" "}
             {bear.volume.unit}
