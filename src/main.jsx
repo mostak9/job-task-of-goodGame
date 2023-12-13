@@ -1,12 +1,15 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-import './index.css'
-import { RouterProvider } from 'react-router-dom'
-import router from './Router/Routes.jsx'
+import "./index.css";
+import { RouterProvider } from "react-router-dom";
+import router from "./Router/Routes.jsx";
+import { ThemeProvider } from "@material-tailwind/react";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider  router={router}/>
-  </React.StrictMode>,
-)
+    <ThemeProvider>
+      <RouterProvider router={router} />
+    </ThemeProvider>
+  </React.StrictMode>
+);
